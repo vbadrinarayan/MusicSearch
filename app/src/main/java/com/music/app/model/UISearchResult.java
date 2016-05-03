@@ -11,7 +11,7 @@ public class UISearchResult {
 
     private String kind;
 
-    private String trackId;
+    private Integer trackId;
 
     private String artistName;
 

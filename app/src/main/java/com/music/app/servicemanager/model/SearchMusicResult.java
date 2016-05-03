@@ -21,7 +21,7 @@ public class SearchMusicResult {
 
     @SerializedName("trackId")
     @Expose
-    private String trackId;
+    private Integer trackId;
 
     @SerializedName("artistName")
     @Expose
@@ -53,19 +53,19 @@ public class SearchMusicResult {
 
     @SerializedName("collectionPrice")
     @Expose
-    private String collectionPrice;
+    private Double collectionPrice;
 
     @SerializedName("trackPrice")
     @Expose
-    private String trackPrice;
+    private Double trackPrice;
 
     @SerializedName("collectionHdPrice")
     @Expose
-    private String collectionHdPrice;
+    private Double collectionHdPrice;
 
     @SerializedName("trackHdPrice")
     @Expose
-    private String trackHdPrice;
+    private Double trackHdPrice;
 
     @SerializedName("releaseDate")
     @Expose
@@ -81,7 +81,7 @@ public class SearchMusicResult {
 
     @SerializedName("trackTimeMillis")
     @Expose
-    private String trackTimeMillis;
+    private Integer trackTimeMillis;
 
     @SerializedName("country")
     @Expose
@@ -107,6 +107,13 @@ public class SearchMusicResult {
     @Expose
     private String longDescription;
 
+    @SerializedName("trackRentalPrice")
+    @Expose
+    private Double trackRentalPrice;
+    @SerializedName("trackHdRentalPrice")
+    @Expose
+    private Double trackHdRentalPrice;
+
     public String getWrapperType() {
         return wrapperType;
     }
@@ -123,11 +130,11 @@ public class SearchMusicResult {
         this.kind = kind;
     }
 
-    public String getTrackId() {
+    public Integer getTrackId() {
         return trackId;
     }
 
-    public void setTrackId(String trackId) {
+    public void setTrackId(Integer trackId) {
         this.trackId = trackId;
     }
 
@@ -187,35 +194,35 @@ public class SearchMusicResult {
         this.artworkUrl100 = artworkUrl100;
     }
 
-    public String getCollectionPrice() {
+    public Double getCollectionPrice() {
         return collectionPrice;
     }
 
-    public void setCollectionPrice(String collectionPrice) {
+    public void setCollectionPrice(Double collectionPrice) {
         this.collectionPrice = collectionPrice;
     }
 
-    public String getTrackPrice() {
+    public Double getTrackPrice() {
         return trackPrice;
     }
 
-    public void setTrackPrice(String trackPrice) {
+    public void setTrackPrice(Double trackPrice) {
         this.trackPrice = trackPrice;
     }
 
-    public String getCollectionHdPrice() {
+    public Double getCollectionHdPrice() {
         return collectionHdPrice;
     }
 
-    public void setCollectionHdPrice(String collectionHdPrice) {
+    public void setCollectionHdPrice(Double collectionHdPrice) {
         this.collectionHdPrice = collectionHdPrice;
     }
 
-    public String getTrackHdPrice() {
+    public Double getTrackHdPrice() {
         return trackHdPrice;
     }
 
-    public void setTrackHdPrice(String trackHdPrice) {
+    public void setTrackHdPrice(Double trackHdPrice) {
         this.trackHdPrice = trackHdPrice;
     }
 
@@ -243,11 +250,11 @@ public class SearchMusicResult {
         this.trackExplicitness = trackExplicitness;
     }
 
-    public String getTrackTimeMillis() {
+    public Integer getTrackTimeMillis() {
         return trackTimeMillis;
     }
 
-    public void setTrackTimeMillis(String trackTimeMillis) {
+    public void setTrackTimeMillis(Integer trackTimeMillis) {
         this.trackTimeMillis = trackTimeMillis;
     }
 
@@ -297,5 +304,21 @@ public class SearchMusicResult {
 
     public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
+    }
+
+    public Double getTrackRentalPrice() {
+        return trackRentalPrice;
+    }
+
+    public void setTrackRentalPrice(Double trackRentalPrice) {
+        this.trackRentalPrice = trackRentalPrice;
+    }
+
+    public Double getTrackHdRentalPrice() {
+        return trackHdRentalPrice;
+    }
+
+    public void setTrackHdRentalPrice(Double trackHdRentalPrice) {
+        this.trackHdRentalPrice = trackHdRentalPrice;
     }
 }

@@ -4,19 +4,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ListView;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.music.app.R;
+import com.music.app.adapter.SongsListAdapter;
 import com.music.app.data.DataManager;
 import com.music.app.inter.ResponseListener;
 import com.music.app.model.UISearchResultList;
 import com.music.app.utility.Constants;
 
 /**
- * Created by Badri on 03/05/16.
+ * MusicSearchResultsActivity displays the list of track results.
  */
 public class MusicSearchResultsActivity extends AppCompatActivity {
 
@@ -41,7 +42,9 @@ public class MusicSearchResultsActivity extends AppCompatActivity {
         DataManager.getMusicSearchResults(getApplication(), mSearchText, new ResponseListener<UISearchResultList>() {
             @Override
             public void onSuccess(UISearchResultList response) {
-                Toast.makeText(MusicSearchResultsActivity.this, "Response::"+response.getResultCount(), Toast.LENGTH_LONG).show();
+                mrecycler_view.setAdapter(new SongsListAdapter(MusicSearchResultsActivity.this
+                        , response.getResults()));
+                mProgressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -52,7 +55,12 @@ public class MusicSearchResultsActivity extends AppCompatActivity {
     }
 
     private void InitViews(){
-        mrecycler_view = (RecyclerView) findViewById(R.id.list_songs);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ((TextView)toolbar.findViewById(R.id.title_toolbar_view)).setText(getResources()
+                .getString(R.string.search_results));
+
+        mrecycler_view = (RecyclerView) findViewById(R.id.recycler_view);
         mrecycler_view.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         mrecycler_view.setLayoutManager(llm);
