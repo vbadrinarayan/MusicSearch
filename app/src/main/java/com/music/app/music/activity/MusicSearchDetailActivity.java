@@ -95,14 +95,14 @@ public class MusicSearchDetailActivity extends AppCompatActivity {
         ImageView mImageView = (ImageView) findViewById(R.id.track_photo);
         Picasso.with(this).load(mResult.getArtworkUrl100()).into(mImageView);
 
-        TextView mTrackArtist = (TextView) findViewById(R.id.track_artist);
-        TextView mTrackLength = (TextView) findViewById(R.id.track_length);
-        TextView mTrackPrice = (TextView) findViewById(R.id.track_price);
+        TextView trackArtist = (TextView) findViewById(R.id.track_artist);
+        TextView trackLength = (TextView) findViewById(R.id.track_length);
+        TextView trackPrice = (TextView) findViewById(R.id.track_price);
         mTrackLyrics = (TextView) findViewById(R.id.track_lyrics);
 
-        mTrackArtist.setText(mResult.getArtistName());
-        mTrackLength.setText(Util.getDuration(mResult.getTrackTimeMillis()));
-        mTrackPrice.setText(mResult.getCurrency() + String.valueOf(mResult.getTrackPrice()));
+        trackArtist.setText(mResult.getArtistName());
+        trackLength.setText(Util.getDuration(mResult.getTrackTimeMillis()));
+        trackPrice.setText(mResult.getCurrency() + String.valueOf(mResult.getTrackPrice()));
 
         CollapsingToolbarLayout collapsingToolbarLayout
                 = (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbarLayout);
