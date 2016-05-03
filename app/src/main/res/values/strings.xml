@@ -21,4 +21,5 @@
     <string name="text_label_search">Enter text below to search for a track from iTunes</string>
     <string name="error_search_text">Please enter a valid search parameter</string>
     <string name="label_search">Search</string>
+    <string name="no_data">No data available for the search parameter.</string>
 </resources>

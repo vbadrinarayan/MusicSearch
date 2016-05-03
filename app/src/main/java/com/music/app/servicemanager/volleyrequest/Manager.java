@@ -3,24 +3,19 @@ package com.music.app.servicemanager.volleyrequest;
 import android.app.Application;
 import android.util.Log;
 
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkError;
 import com.android.volley.NoConnectionError;
-import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.Gson;
 import com.music.app.inter.ResponseListener;
-import com.music.app.main.application.MusicApplication;
-import com.music.app.main.exception.AppException;
-import com.music.app.model.ResponseMessage;
+import com.music.app.inter.SearchInterface;
 import com.music.app.model.UISearchResultList;
 import com.music.app.utility.Constants;
-
-import org.json.JSONObject;
 
 /**
  * Manager.
@@ -31,45 +26,30 @@ public class Manager {
 
     public static void getSearchResults(final Application context, final String searchText
             , final ResponseListener<UISearchResultList> listener) {
+        System.out.println("Manager::::coming here");
+        final String targetUrl = Constants.URL_MUSIC_SEARCH;
+        RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(targetUrl).build();
+        SearchInterface inter = restAdapter.create(SearchInterface.class);
 
-        final String targetUrl = String.format(Constants.URL_MUSIC_SEARCH);
-        Response.Listener<JSONObject> successListener = new Response.Listener<JSONObject>() {
-
+        inter.searchTracks(searchText, new Callback<UISearchResultList>() {
             @Override
-            public void onResponse(JSONObject response) {
-                if (response != null && !"null".equalsIgnoreCase(response.toString().trim())) {
-                    try {
-                        Log.i(TAG, "Response:::" + response.toString());
-                        UISearchResultList results = new Gson().fromJson(
-                                response.toString(), UISearchResultList.class);
-
-                    }catch(NullPointerException|com.google.gson.JsonSyntaxException exception){
-                        // Exception handling
+            public void success(UISearchResultList searchResp, retrofit.client.Response response) {
+                if (searchResp != null) {
+                    Log.i(TAG, "Count is:::"+searchResp.getResults().size());
+                    if (searchResp.getResults().size() > 0) {
+                        listener.onSuccess(searchResp);
                     }
-                } else{
-                    ResponseMessage message = new ResponseMessage();
-                    message.setMessage(targetUrl);
-                    message.setStatus(Constants.ERROR_SERVER);
                 }
             }
-        };
 
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                String message = getMessage(error);
-                AppException exception = new AppException(error);
-                listener.onFailure(exception, message);
-
+            public void failure(RetrofitError error) {
+                String msg = error.getMessage();
+                listener.onFailure(new Throwable(), msg);
             }
-        };
+        });
 
-        JsonObjectRequest objectRequest = new JsonObjectRequest(targetUrl
-                , null, successListener, errorListener);
-        objectRequest.setRetryPolicy(new DefaultRetryPolicy
-                (Constants.RETRY_POLICY, 5, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MusicApplication app = (MusicApplication) context;
-        app.addToRequestQueue(objectRequest, Constants.SEARCH_TAG);
+
     }
 
     /**

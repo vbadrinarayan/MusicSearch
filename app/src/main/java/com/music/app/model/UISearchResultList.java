@@ -1,24 +1,32 @@
 package com.music.app.model;
 
+import javax.annotation.Generated;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.music.app.servicemanager.model.SearchMusicResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * UISearchResultList.
  */
+@Generated("org.jsonschema2pojo")
 public class UISearchResultList {
 
-    private int resultCount;
+    @SerializedName("resultCount")
+    @Expose
+    private Integer resultCount;
 
-    private List<SearchMusicResult> results;
+    @SerializedName("results")
+    @Expose
+    private List<SearchMusicResult> results = new ArrayList<SearchMusicResult>();
 
-    public int getResultCount() {
+    public Integer getResultCount() {
         return resultCount;
     }
 
-    public void setResultCount(int resultCount) {
+    public void setResultCount(Integer resultCount) {
         this.resultCount = resultCount;
     }
 

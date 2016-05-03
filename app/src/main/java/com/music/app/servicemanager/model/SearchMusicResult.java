@@ -1,82 +1,110 @@
 package com.music.app.servicemanager.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 /**
  * SearchMusicResults.
  */
+@Generated("org.jsonschema2pojo")
 public class SearchMusicResult {
 
     @SerializedName("wrapperType")
+    @Expose
     private String wrapperType;
 
     @SerializedName("kind")
+    @Expose
     private String kind;
 
     @SerializedName("trackId")
+    @Expose
     private String trackId;
 
     @SerializedName("artistName")
+    @Expose
     private String artistName;
 
     @SerializedName("trackName")
+    @Expose
     private String trackName;
 
     @SerializedName("trackCensoredName")
+    @Expose
     private String trackCensoredName;
 
     @SerializedName("previewUrl")
+    @Expose
     private String previewUrl;
 
     @SerializedName("artworkUrl30")
+    @Expose
     private String artworkUrl30;
 
     @SerializedName("artworkUrl60")
+    @Expose
     private String artworkUrl60;
 
     @SerializedName("artworkUrl100")
+    @Expose
     private String artworkUrl100;
 
     @SerializedName("collectionPrice")
+    @Expose
     private String collectionPrice;
 
     @SerializedName("trackPrice")
+    @Expose
     private String trackPrice;
 
     @SerializedName("collectionHdPrice")
+    @Expose
     private String collectionHdPrice;
 
     @SerializedName("trackHdPrice")
+    @Expose
     private String trackHdPrice;
 
     @SerializedName("releaseDate")
+    @Expose
     private String releaseDate;
 
     @SerializedName("collectionExplicitness")
+    @Expose
     private String collectionExplicitness;
 
     @SerializedName("trackExplicitness")
+    @Expose
     private String trackExplicitness;
 
     @SerializedName("trackTimeMillis")
+    @Expose
     private String trackTimeMillis;
 
     @SerializedName("country")
+    @Expose
     private String country;
 
     @SerializedName("currency")
+    @Expose
     private String currency;
 
     @SerializedName("primaryGenreName")
+    @Expose
     private String primaryGenreName;
 
     @SerializedName("contentAdvisoryRating")
+    @Expose
     private String contentAdvisoryRating;
 
     @SerializedName("shortDescription")
+    @Expose
     private String shortDescription;
 
     @SerializedName("longDescription")
+    @Expose
     private String longDescription;
 
     public String getWrapperType() {

@@ -7,7 +7,7 @@ public class Constants {
 
     public static final int SPLASH_TIME_OUT = 3000;
     public static final int RETRY_POLICY = 10000;
-    public static final String URL_MUSIC_SEARCH = "https://itunes.apple.com/search?term=tom";
+    public static final String URL_MUSIC_SEARCH = "https://itunes.apple.com";
     public static final String URL_MUSIC_DETAIL
             = "http://lyrics.wikia.com/api.php?artist=Tom%20waits&song=time&fmt=json&func=getSong";
 

@@ -45,6 +45,8 @@ public class MusicSearchActivity extends AppCompatActivity
 
         mTitleView.setText(R.string.label_home);
 
+        setFragment(new HomeFragment(), false, null);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

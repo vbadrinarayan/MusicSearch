@@ -3,12 +3,14 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatAutoCompleteTextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/text_label_search"
         android:gravity="center_horizontal"
-        android:layout_margin="@dimen/button_margin"/>
+        android:layout_marginTop="@dimen/nav_header_height"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp" />
 
     <EditText
         android:id="@+id/edittext_search"
