@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.music.app.inter.ResponseListener;
 import com.music.app.model.UISearchResultList;
-import com.music.app.servicemanager.volleyrequest.Manager;
+import com.music.app.servicemanager.webrequest.Manager;
 
 /**
  * DataManager.
