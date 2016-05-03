@@ -28,10 +28,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".music.activity.MusicSearchActivity"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".music.activity.MusicSearchResultsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".music.activity.MusicSearchDetailActivity"
             android:screenOrientation="portrait" />
     </application>
 

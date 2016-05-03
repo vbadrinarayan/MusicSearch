@@ -11,6 +11,12 @@ import com.music.app.music.activity.MusicSearchActivity;
 
 /**
  * LoginActivity display the login screen for logging in to the application.
+ *
+ *-------------------------------------------------------------
+ * Was planning to do an Social Networking site integration.
+ * Here i would authenticate users throush Facebook etc.
+ * But if get some more time i would have done this.
+ *
  */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 

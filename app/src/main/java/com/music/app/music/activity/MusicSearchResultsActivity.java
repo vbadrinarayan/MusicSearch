@@ -1,5 +1,6 @@
 package com.music.app.music.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,8 +15,12 @@ import com.music.app.adapter.SongsListAdapter;
 import com.music.app.data.DataManager;
 import com.music.app.inter.ListItemClickCallback;
 import com.music.app.inter.ResponseListener;
+import com.music.app.model.UISearchResult;
 import com.music.app.model.UISearchResultList;
+import com.music.app.servicemanager.model.SearchMusicResult;
 import com.music.app.utility.Constants;
+
+import java.util.List;
 
 /**
  * MusicSearchResultsActivity displays the list of track results.
@@ -30,6 +35,8 @@ public class MusicSearchResultsActivity extends AppCompatActivity implements Lis
 
     private String mSearchText;
 
+    private List<SearchMusicResult> mResponse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +50,9 @@ public class MusicSearchResultsActivity extends AppCompatActivity implements Lis
         DataManager.getMusicSearchResults(getApplication(), mSearchText, new ResponseListener<UISearchResultList>() {
             @Override
             public void onSuccess(UISearchResultList response) {
+                mResponse = response.getResults();
                 mrecycler_view.setAdapter(new SongsListAdapter(MusicSearchResultsActivity.this
-                        , response.getResults()));
+                        , mResponse));
                 mProgressBar.setVisibility(View.GONE);
             }
 
@@ -73,6 +81,23 @@ public class MusicSearchResultsActivity extends AppCompatActivity implements Lis
 
     @Override
     public void OnHandleItemCLick(int position) {
+        SearchMusicResult selectedTrack = mResponse.get(position);
+        Intent intent = new Intent(this, MusicSearchDetailActivity.class);
+        UISearchResult result = new UISearchResult();
 
+        result.setArtistName(selectedTrack.getArtistName());
+        result.setArtworkUrl30(selectedTrack.getArtworkUrl30());
+        result.setArtworkUrl60(selectedTrack.getArtworkUrl60());
+        result.setArtworkUrl100(selectedTrack.getArtworkUrl100());
+        result.setCollectionPrice(selectedTrack.getCollectionPrice());
+        result.setReleaseDate(selectedTrack.getReleaseDate());
+        result.setCurrency(selectedTrack.getCurrency());
+        result.setPreviewUrl(selectedTrack.getPreviewUrl());
+        result.setTrackName(selectedTrack.getTrackName());
+        result.setTrackPrice(selectedTrack.getTrackPrice());
+        result.setTrackTimeMillis(selectedTrack.getTrackTimeMillis());
+
+        intent.putExtra(Constants.SELECTED_TRACK, result);
+        startActivity(intent);
     }
 }

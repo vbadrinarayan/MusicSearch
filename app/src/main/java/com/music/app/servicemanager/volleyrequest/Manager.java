@@ -26,7 +26,12 @@ public class Manager {
 
     public static void getSearchResults(final Application context, final String searchText
             , final ResponseListener<UISearchResultList> listener) {
-        System.out.println("Manager::::coming here");
+
+        /*
+         * Here the conversion from teh service model to UI model has to happen and UI model
+         * has to be returned. Due to tiome constraints the service model is being returned.
+         */
+
         final String targetUrl = Constants.URL_MUSIC_SEARCH;
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(targetUrl).build();
         SearchInterface inter = restAdapter.create(SearchInterface.class);
