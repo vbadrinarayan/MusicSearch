@@ -65,8 +65,8 @@ public class MusicSearchDetailActivity extends AppCompatActivity {
 
             @Override
             public void failure(RetrofitError error) {
-                String strError=error.getMessage();
-                mTrackLyrics.setText("error:"+strError);
+                String errorMsg = error.getMessage();
+                mTrackLyrics.setText("error:"+errorMsg);
             }
         });
 

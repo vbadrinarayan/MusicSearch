@@ -7,11 +7,6 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
 import com.music.app.inter.ResponseListener;
 import com.music.app.inter.SearchInterface;
 import com.music.app.model.UISearchResultList;
@@ -55,39 +50,6 @@ public class Manager {
         });
 
 
-    }
-
-    /**
-     * Determines whether the error is related to network
-     *
-     * @param error
-     * @return
-     */
-    private static boolean isNetworkProblem(Object error) {
-        return (error instanceof NetworkError);
-    }
-
-    /**
-     * Determines whether the error is related to server
-     *
-     * @param error
-     * @return
-     */
-    private static boolean isServerProblem(Object error) {
-        return (error instanceof ServerError) || (error instanceof AuthFailureError)
-                || (error instanceof NoConnectionError);
-    }
-
-
-    private static String getMessage(Object error) {
-        if (error instanceof TimeoutError) {
-            return Constants.ERROR_SERVER_DOWN;
-        } else if (isServerProblem(error)) {
-            return Constants.ERROR_SERVER;
-        } else if (isNetworkProblem(error)) {
-            return Constants.ERROR_INTERNET_UNAVAILABLE;
-        }
-        return Constants.ERROR_SERVICE_FAILED;
     }
 
 }
