@@ -5,13 +5,14 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.music.app.R;
-import com.music.app.model.UISearchResult;
-import com.music.app.model.UISearchResultList;
+import com.music.app.inter.ListItemClickCallback;
 import com.music.app.servicemanager.model.SearchMusicResult;
 import com.music.app.utility.Util;
 import com.squareup.picasso.Picasso;
@@ -19,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Created by Badri on 03/05/16.
+ * SongsListAdapter binds data with the songs list.
  */
 public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.SongViewHolder> {
 
@@ -27,17 +28,19 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Song
 
     private Context mContext;
 
+    private static ListItemClickCallback mCallback;
+
     public SongsListAdapter(Context context, List<SearchMusicResult> listData){
         mListData = listData;
         mContext = context;
+        mCallback = (ListItemClickCallback) context;
     }
 
     @Override
     public SongViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_recycler_view_row
                 , parent, false);
-        SongViewHolder svh = new SongViewHolder(v);
-        return svh;
+        return new SongViewHolder(v);
     }
 
     @Override
@@ -54,7 +57,8 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Song
         return mListData.size();
     }
 
-    public static class SongViewHolder extends RecyclerView.ViewHolder {
+    public static class SongViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
+        LinearLayout layout;
         CardView cv;
         ImageView trackImage;
         TextView trackName;
@@ -64,12 +68,20 @@ public class SongsListAdapter extends RecyclerView.Adapter<SongsListAdapter.Song
 
         SongViewHolder(View itemView) {
             super(itemView);
+            layout = (LinearLayout)itemView.findViewById(R.id.layout);
             cv = (CardView)itemView.findViewById(R.id.cv);
             trackName = (TextView)itemView.findViewById(R.id.track_name);
             artistName = (TextView)itemView.findViewById(R.id.artist_name);
             trackLength = (TextView)itemView.findViewById(R.id.track_length);
             trackImage = (ImageView) itemView.findViewById(R.id.track_photo);
             trackPlay = (ImageView) itemView.findViewById(R.id.track_play);
+
+            layout.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            mCallback.OnHandleItemCLick(getAdapterPosition());
         }
     }
 

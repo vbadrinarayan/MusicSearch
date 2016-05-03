@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.music.app.R;
 import com.music.app.adapter.SongsListAdapter;
 import com.music.app.data.DataManager;
+import com.music.app.inter.ListItemClickCallback;
 import com.music.app.inter.ResponseListener;
 import com.music.app.model.UISearchResultList;
 import com.music.app.utility.Constants;
@@ -19,7 +20,7 @@ import com.music.app.utility.Constants;
 /**
  * MusicSearchResultsActivity displays the list of track results.
  */
-public class MusicSearchResultsActivity extends AppCompatActivity {
+public class MusicSearchResultsActivity extends AppCompatActivity implements ListItemClickCallback {
 
     private RecyclerView mrecycler_view;
 
@@ -67,6 +68,11 @@ public class MusicSearchResultsActivity extends AppCompatActivity {
 
         mProgressBar = (ProgressBar) findViewById(R.id.pBar);
         mNoData = (TextView) findViewById(R.id.no_data);
+
+    }
+
+    @Override
+    public void OnHandleItemCLick(int position) {
 
     }
 }
