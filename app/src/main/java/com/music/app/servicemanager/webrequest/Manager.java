@@ -36,9 +36,7 @@ public class Manager {
             public void success(UISearchResultList searchResp, retrofit.client.Response response) {
                 if (searchResp != null) {
                     Log.i(TAG, "Count is:::"+searchResp.getResults().size());
-                    if (searchResp.getResults().size() > 0) {
-                        listener.onSuccess(searchResp);
-                    }
+                    listener.onSuccess(searchResp);
                 }
             }
 

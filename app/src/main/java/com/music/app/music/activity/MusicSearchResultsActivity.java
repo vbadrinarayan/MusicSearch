@@ -2,6 +2,7 @@ package com.music.app.music.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.music.app.R;
 import com.music.app.adapter.SongsListAdapter;
@@ -50,10 +52,21 @@ public class MusicSearchResultsActivity extends AppCompatActivity implements Lis
         DataManager.getMusicSearchResults(getApplication(), mSearchText, new ResponseListener<UISearchResultList>() {
             @Override
             public void onSuccess(UISearchResultList response) {
-                mResponse = response.getResults();
-                mrecycler_view.setAdapter(new SongsListAdapter(MusicSearchResultsActivity.this
-                        , mResponse));
+
+                if(response.getResultCount() == 0) {
+                    mNoData.setVisibility(View.GONE);
+                    mrecycler_view.setVisibility(View.GONE);
+                    mResponse = response.getResults();
+                    mrecycler_view.setAdapter(new SongsListAdapter(MusicSearchResultsActivity.this
+                            , mResponse));
+
+                }else{
+                    Toast.makeText(MusicSearchResultsActivity.this
+                            , getResources().getString(R.string.no_data), Toast.LENGTH_LONG).show();
+                    finish();
+                }
                 mProgressBar.setVisibility(View.GONE);
+
             }
 
             @Override
