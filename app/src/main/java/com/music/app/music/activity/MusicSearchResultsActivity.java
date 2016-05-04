@@ -53,9 +53,7 @@ public class MusicSearchResultsActivity extends AppCompatActivity implements Lis
             @Override
             public void onSuccess(UISearchResultList response) {
 
-                if(response.getResultCount() == 0) {
-                    mNoData.setVisibility(View.GONE);
-                    mrecycler_view.setVisibility(View.GONE);
+                if(response.getResultCount() > 0) {
                     mResponse = response.getResults();
                     mrecycler_view.setAdapter(new SongsListAdapter(MusicSearchResultsActivity.this
                             , mResponse));
